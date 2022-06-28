@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Coding Bootcamp Testimonials Slider</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container" aria-label="Quotes by Customers">
+      <div class="container__quotes-container">
+        <div data-active class="quote-wrapper">
+          <q class="container__quote"
+            >I’ve been interested in coding for a while but never taken the
+            jump, until now. I couldn’t recommend this course enough. I’m now in
+            the job of my dreams and so excited about the future.</q
+          >
+          <span class="container__quote-author"
+            ><span>Tanya Sinclair</span> UX Engineer</span
+          >
+        </div>
+
+        <div class="quote-wrapper">
+          <q class="container__quote"
+            >If you want to lay the best foundation possible I’d recommend
+            taking this course. The depth the instructors go into is incredible.
+            I now feel so confident about starting up as a professional
+            developer.</q
+          >
+          <span class="container__quote-author"
+            ><span>John Tarkpor Junior</span> Front-end Developer</span
+          >
+        </div>
+      </div>
+      <div class="container__carousel">
+        <img
+          src="images/image-tanya.jpg"
+          class="container__carousel-image"
+          alt=""
+          data-active
+        />
+        <img
+          src="images/image-john.jpg"
+          class="container__carousel-image"
+          alt=""
+        />
+
+        <div class="container__buttons">
+          <button data-carousel-button="prev">
+            <img
+              src="images/icon-prev.svg"
+              class="container_button-prev"
+              alt=""
+            /></button
+          ><button data-carousel-button="next">
+            <img
+              src="images/icon-next.svg"
+              class="container_button-next"
+              alt=""
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </div> -->
+
+    <script>
+      const buttons = document.querySelectorAll("[data-carousel-button]");
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          button.style.animation = "clicked 0.25s ease-in-out";
+          const offset = button.dataset.carouselButton === "next" ? 1 : -1;
+
+          // For Looping Images
+          const imagesContainer = document.querySelector(
+            ".container__carousel"
+          );
+
+          const activeImage = imagesContainer.querySelector("[data-active]");
+
+          let newImageIndex =
+            [
+              ...document.querySelectorAll(".container__carousel > img"),
+            ].indexOf(activeImage) + offset;
+          if (newImageIndex < 0)
+            newImageIndex =
+              document.querySelectorAll(".container__carousel > img").length -
+              1;
+          if (
+            newImageIndex >=
+            document.querySelectorAll(".container__carousel > img").length
+          )
+            newImageIndex = 0;
+          document.querySelectorAll(".container__carousel > img")[
+            newImageIndex
+          ].dataset.active = true;
+          delete activeImage.dataset.active;
+          // For Looping Quotes
+          const quotesContainer = document.querySelector(
+            ".container__quotes-container"
+          );
+
+          const activeQuote = quotesContainer.querySelector("[data-active]");
+
+          let newQuoteIndex =
+            [...quotesContainer.children].indexOf(activeQuote) + offset;
+
+          if (newQuoteIndex < 0)
+            newQuoteIndex = quotesContainer.children.length - 1;
+          if (newQuoteIndex >= quotesContainer.children.length)
+            newQuoteIndex = 0;
+
+          quotesContainer.children[newQuoteIndex].dataset.active = true;
+          delete activeQuote.dataset.active;
+
+          setTimeout(() => {
+            button.style.animation = "";
+          }, 250);
+        });
+      });
+    </script>
+  </body>
+</html>

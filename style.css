@@ -1,0 +1,241 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap");
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role=list],
+ol[role=list] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+*::before,
+*::after {
+    -webkit-animation-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+            animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+body {
+  font-family: "Inter", sans-serif;
+  background-image: url("images/pattern-curve.svg"), url("images/pattern-bg.svg");
+  background-position: left bottom, 82% 50%;
+  background-repeat: no-repeat, no-repeat;
+  background-size: auto, min(50%, 600px);
+  display: grid;
+  place-content: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  place-items: center;
+  width: min(68rem, 90%);
+  margin: auto;
+}
+.container div:nth-child(1) {
+  z-index: 1;
+}
+.container .quote-wrapper {
+  transition: opacity 0.25s ease-in-out, visibility 0.25s ease-in-out, display 0.25s ease-in-out;
+}
+.container .quote-wrapper:not([data-active]) {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
+.container__quote {
+  font-size: clamp(1.3125rem, 1.1316rem + 0.9649vw, 2rem);
+  color: hsl(240deg, 38%, 20%);
+  font-weight: 300;
+  position: relative;
+  display: block;
+  margin-bottom: 2rem;
+}
+.container__quote::before {
+  content: url("images/pattern-quotes.svg");
+  position: absolute;
+  top: -20%;
+  left: 12%;
+}
+.container__quote-author {
+  display: block;
+  font-size: clamp(0.9375rem, 0.8553rem + 0.4386vw, 1.25rem);
+  color: inherit;
+  color: hsl(240deg, 18%, 77%);
+}
+.container__quote-author span:nth-child(1) {
+  color: hsl(240deg, 38%, 20%);
+  font-weight: 700;
+}
+.container__carousel {
+  box-shadow: 10px 30px 15px 0px hsla(0deg, 0%, 50%, 0.3);
+  position: relative;
+  right: 12%;
+  z-index: 0;
+}
+.container__carousel .container__carousel-image:not([data-active]) {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
+.container__buttons {
+  background-color: white;
+  border-radius: 100vmax;
+  padding: 1rem;
+  position: absolute;
+  bottom: 0;
+  left: 9%;
+  transform: translateY(50%);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  background-color: inherit;
+  transition: transform 0.25s linear;
+}
+button:hover {
+  transform: scale(1.1);
+}
+
+@-webkit-keyframes clicked {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.7);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes clicked {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.7);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@media screen and (max-width: 700px) {
+  body {
+    background-position: left bottom, 50% 5%;
+    background-size: auto, min(90%, 450px);
+  }
+
+  .container {
+    padding-block: 3rem;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    width: min(22rem, 85%);
+  }
+  .container div:nth-child(1) {
+    order: 2;
+  }
+  .container__quote {
+    font-size: clamp(1.3125rem, 1.1316rem + 0.9649vw, 2rem);
+    color: hsl(240deg, 38%, 20%);
+    font-weight: 300;
+    position: relative;
+    display: block;
+    margin-bottom: 2rem;
+  }
+  .container__quote::before {
+    content: url("images/pattern-quotes.svg");
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  .container__carousel {
+    box-shadow: 10px 30px 15px 0px hsla(0deg, 0%, 50%, 0.3);
+    position: relative;
+    right: 0;
+    z-index: 0;
+    order: 1;
+  }
+  .container__buttons {
+    background-color: white;
+    border-radius: 100vmax;
+    padding: 1rem;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    display: block;
+    margin-inline: auto;
+    transform: translateY(50%) translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+}/*# sourceMappingURL=style.css.map */
