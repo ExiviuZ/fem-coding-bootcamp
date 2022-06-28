@@ -30,7 +30,7 @@ Users should be able to:
 
 ### Mobile Preview
 
-![](./screenshots/coding-bootcamp-mobile.jpeg.jpeg)
+![](./screenshots/coding-bootcamp-mobile.jpeg)
 
 ### Links
 
